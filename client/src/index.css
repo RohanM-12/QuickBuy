@@ -1,13 +1,31 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@700&family=Yanone+Kaffeesatz:wght@300;400&display=swap");
+/* font-family: 'Urbanist', sans-serif;
+font-family: 'Yanone Kaffeesatz', sans-serif; */
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* navbar css */
+.navbar {
+  font-family: "Yanone Kaffeesatz", serif;
+  font-size: 20px;
+  line-height: 18px;
+  font-weight: bold;
+  box-shadow: 0 15px 15px -10px gray;
+  border-radius: 0px 0px 20px 20px;
+  border-bottom: 0.5px solid gray;
+  --webkit-box-shadow: 0 15px 15px -10px gray;
+}
+.nav-link {
+  font-weight: 400 !important;
+}
+.navbar-brand {
+  margin-left: 15px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+.active {
+  border-bottom: solid black 2px;
 }
