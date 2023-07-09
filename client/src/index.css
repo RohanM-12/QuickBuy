@@ -9,10 +9,12 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
 
 /* navbar css */
 .navbar {
+  color: #4361ee;
   font-family: "Yanone Kaffeesatz", serif;
   font-size: 20px;
   line-height: 18px;
   font-weight: bold;
+
   box-shadow: 0 15px 15px -10px gray;
   border-radius: 0px 0px 20px 20px;
   border-bottom: 0.5px solid gray;
@@ -20,12 +22,73 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
 }
 .nav-link {
   font-weight: 400 !important;
+  color: #4361ee;
 }
 .navbar-brand {
   margin-left: 15px;
-  font-weight: 600;
+  font-weight: 900;
   letter-spacing: 3px;
+  color: #4361ee;
 }
 .active {
-  border-bottom: solid black 2px;
+  border-bottom: solid #4361ee 3px;
+  font-weight: bolder;
+}
+
+/* footer */
+.footer {
+  color: white;
+  padding: 40px;
+  background-color: #4361ee;
+}
+.footer-link {
+  color: white;
+  text-decoration: none;
+  padding: 7px;
+}
+.footer-link:hover {
+  border-bottom: white solid 2px;
+}
+
+/*--------------------- Page not found ----------------------------------*/
+.pnf {
+  display: flex;
+  min-height: 64vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.pnf-btn {
+  font-weight: 700;
+  text-decoration: none;
+  border: #4361ee solid 3px;
+  border-radius: 20px;
+  padding: 10px;
+  min-width: 10vw;
+  text-align: center;
+}
+.pnf-btn:hover {
+  color: white;
+  background-color: #4361ee;
+}
+
+/* ==============signup================== */
+
+.signup {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  flex-direction: column;
+}
+.signup-title {
+  font-family: "Urbanist", sans-serif;
+  padding-bottom: 15px;
+}
+.btn-submit {
+  margin-left: 40%;
+  font-weight: bold;
+  border-radius: 15px;
+  padding: 10px;
 }
