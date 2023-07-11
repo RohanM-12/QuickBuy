@@ -2,30 +2,28 @@ import React, { useState } from "react";
 import Layout from "../../Components/Layout/Layout";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-
+import { useAuth } from "../../Context/Auth";
 import axios from "axios";
-const SignUp = () => {
-  const [name, setName] = useState("");
+const Login = () => {
+  const [auth, setAuth] = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
+
   const navigate = useNavigate();
   //handle submit form functuoin
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/signup", {
-        name,
+      const res = await axios.post("/api/v1/auth/login", {
         email,
         password,
-        phone,
-        address,
       });
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
-        navigate("/login");
+        setAuth({ ...auth, user: res.data.user, token: res.data.token });
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        navigate("/");
       } else {
         toast.error(res.data.message);
       }
@@ -40,18 +38,8 @@ const SignUp = () => {
       <div className="signup">
         <div className="form-container">
           <form onSubmit={handleSubmit} className="">
-            <h1 className="signup-title">SignIn</h1>
-            <div className="mb-3 ">
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className=" form-control "
-                id="exampleInputEmail1"
-                placeholder="Name"
-                required
-              />
-            </div>
+            <h1 className="signup-title">Login</h1>
+
             <div className="mb-3">
               <input
                 type="email"
@@ -74,30 +62,9 @@ const SignUp = () => {
                 required
               />
             </div>
-            <div className="mb-3">
-              <input
-                type="text"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="form-control"
-                id="exampleInputEmail1"
-                placeholder=" Phone No."
-                required
-              />
-            </div>
-            <div className="mb-3 ">
-              <input
-                type="text"
-                className="form-control"
-                id="exampleInputEmail1"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder=" Addresss"
-                required
-              />
-            </div>
+
             <button type="submit" className=" btn-submit  btn btn-primary">
-              Sign In
+              LogIn
             </button>
           </form>
         </div>
@@ -106,4 +73,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;

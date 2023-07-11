@@ -1,7 +1,19 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { GrShop } from "react-icons/gr";
+import { useAuth } from "../../Context/Auth";
+import toast from "react-hot-toast";
 const Header = () => {
+  const [auth, setAuth] = useAuth();
+  const handleLogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("auth");
+    toast.success("Logged out Successfully");
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -32,16 +44,34 @@ const Header = () => {
                   Category
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/signup" className="nav-link" href="#">
-                  Sign Up
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/login" className="nav-link" href="#">
-                  Log In
-                </NavLink>
-              </li>
+              {!auth.user ? (
+                <>
+                  <li className="nav-item">
+                    <NavLink to="/signup" className="nav-link" href="#">
+                      SignIn
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink to="/login" className="nav-link" href="#">
+                      LogIn
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <li className="nav-item">
+                    <NavLink
+                      onClick={handleLogout}
+                      to="/login"
+                      className="nav-link"
+                      href="#"
+                    >
+                      LogOut
+                    </NavLink>
+                  </li>
+                </>
+              )}
               <li className="nav-item">
                 <NavLink to="/cart" className="nav-link" href="#">
                   Cart (0)

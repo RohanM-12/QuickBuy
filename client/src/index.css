@@ -39,7 +39,7 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
 .footer {
   color: white;
   padding: 40px;
-  background-color: #4361ee;
+  background-color: #4362eec5;
 }
 .footer-link {
   color: white;
@@ -74,21 +74,42 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
 
 /* ==============signup================== */
 
-.signup {
+.signup-title {
+  font-family: "Urbanist", sans-serif;
+  padding-bottom: 15px;
+  letter-spacing: 5px;
+  text-align: center;
+}
+.btn-submit {
+  margin-left: 35%;
+  font-weight: bold;
+  border-radius: 15px;
+  padding: 10px;
+  /* margin-top: 10px; */
+  min-width: 30%;
+}
+.btn-submit:hover {
+  color: #4361ee;
+  background-color: white;
+  /* border: solid #4361ee 2px; */
+}
+.form-container {
   display: flex;
 
   align-items: center;
   justify-content: center;
-  height: 70vh;
+  height: 80vh;
   flex-direction: column;
+  background-color: #ffffff;
+  background-image: linear-gradient(315deg, #ffffff 0%, #4b9bf65f 74%);
 }
-.signup-title {
-  font-family: "Urbanist", sans-serif;
-  padding-bottom: 15px;
+.form-container form {
+  box-shadow: rgba(0, 0, 0, 0.489) 0px 5px 15px;
+  padding: 40px;
+  min-width: 25%;
+  background-color: white;
+  border-radius: 20px;
 }
-.btn-submit {
-  margin-left: 40%;
-  font-weight: bold;
-  border-radius: 15px;
-  padding: 10px;
+.form-container input {
+  border: black solid 1px;
 }
