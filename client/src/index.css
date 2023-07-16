@@ -108,8 +108,17 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
   padding: 40px;
   min-width: 25%;
   background-color: white;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .form-container input {
   border: black solid 1px;
+}
+.form-container label {
+  margin-left: 30%;
+  color: blue;
+  font-size: 90%;
+  text-align: center;
+}
+.form-container label:hover {
+  border-bottom: #4361ee solid 2px;
 }

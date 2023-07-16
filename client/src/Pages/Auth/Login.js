@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Layout from "../../Components/Layout/Layout";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../../Context/Auth";
 import axios from "axios";
+
 const Login = () => {
   const [auth, setAuth] = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const location = useLocation();
   const navigate = useNavigate();
   //handle submit form functuoin
 
@@ -23,7 +24,7 @@ const Login = () => {
         toast.success(res.data && res.data.message);
         setAuth({ ...auth, user: res.data.user, token: res.data.token });
         localStorage.setItem("auth", JSON.stringify(res.data));
-        navigate("/");
+        navigate(location.state || "/");
       } else {
         toast.error(res.data.message);
       }
@@ -62,7 +63,14 @@ const Login = () => {
                 required
               />
             </div>
-
+            <label
+              className="mb-3"
+              onClick={() => {
+                navigate("/forgot-password");
+              }}
+            >
+              Forgot Password ?
+            </label>
             <button type="submit" className=" btn-submit  btn btn-primary">
               LogIn
             </button>
