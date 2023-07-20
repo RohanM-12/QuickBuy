@@ -38,7 +38,6 @@ const Header = () => {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="  mx-2  nav-item">
                 <NavLink to="/" className="nav-link ">
-                  <div className="mb-1">{/* <AiFillHome /> */}</div>
                   Home
                 </NavLink>
               </li>
