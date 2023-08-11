@@ -24,7 +24,7 @@ app.use(morgan("dev"));
 //routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
-app.use("/api/v1/products", productRoutes);
+app.use("/api/v1/product", productRoutes);
 //rest api
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to Quickbuy</h1>");
