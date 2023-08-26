@@ -33,7 +33,7 @@ router.put(
 router.get("/get-products", getProductController);
 
 // singlle products get
-router.get("/get-products/:slug", getSingleProductController);
+router.get("/get-product/:slug", getSingleProductController);
 
 //getPhoto
 router.get("/product-photo/:pid", productPhotoController);
