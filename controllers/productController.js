@@ -111,7 +111,7 @@ export const productPhotoController = async (req, res) => {
 //deleteProductController
 export const deleteProductController = async (req, res) => {
   try {
-    await productModel.findByIdAndDelete(re.params.pid).select("-photo");
+    await productModel.findByIdAndDelete(req.params.pid).select("-photo");
     res
       .status(200)
       .send({ success: true, message: "Product Deleted successfully" });

@@ -187,3 +187,9 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
 .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+.card-img-top {
+  width: 100%;
+  height: 25vh;
+  object-fit: cover;
+}

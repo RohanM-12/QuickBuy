@@ -19,6 +19,26 @@ const UpdateProduct = () => {
   const [photo, setPhoto] = useState("");
   const navigate = useNavigate();
   const [id, setId] = useState("");
+
+  // delete priduct
+  const handleDelete = async () => {
+    try {
+      let answer = window.confirm(
+        "Are you sure , You want to delete this product?"
+      );
+      if (!answer) return;
+
+      const { data } = await axios.delete(
+        `/api/v1/product/delete-product/${id}`
+      );
+      toast.success("Product deleted successfully");
+      navigate("/dashboard/admin/products");
+    } catch (error) {
+      console.log(error);
+      toast.error("something went wrong");
+    }
+  };
+
   //getSingle proiduct
 
   const getSingleProduct = async () => {
@@ -202,6 +222,11 @@ const UpdateProduct = () => {
               <div className="mb-3">
                 <button className="btn btn-primary" onClick={handleUpdate}>
                   Update Product
+                </button>
+              </div>
+              <div className="mb-3">
+                <button className="btn btn-danger" onClick={handleDelete}>
+                  Delete Product
                 </button>
               </div>
             </div>
