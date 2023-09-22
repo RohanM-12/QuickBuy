@@ -4,6 +4,7 @@ import { GrShop } from "react-icons/gr";
 import { FaUserCircle } from "react-icons/fa";
 import { useAuth } from "../../Context/Auth";
 import toast from "react-hot-toast";
+import SearchInput from "../Form/SearchInput";
 // import { AiFillHome } from "react-icons/ai";
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -36,6 +37,7 @@ const Header = () => {
               <GrShop /> QuickBuy
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              <SearchInput />
               <li className="  mx-2  nav-item">
                 <NavLink to="/" className="nav-link ">
                   Home
