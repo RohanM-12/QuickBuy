@@ -249,8 +249,8 @@ export const searchProductController = async (req, res) => {
     const result = await productModel
       .find({
         $or: [
-          { name: { regex: keyword, $options: "i" } },
-          { description: { regex: keyword, $options: "i" } },
+          { name: { $regex: keyword, $options: "i" } },
+          { description: { $regex: keyword, $options: "i" } },
         ],
       })
       .select("-photo");

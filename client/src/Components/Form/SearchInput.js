@@ -7,6 +7,7 @@ const SearchInput = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     try {
+      e.preventDefault();
       const { data } = await axios.get(
         `/api/v1/product/search/${values.keyword}`
       );
@@ -28,7 +29,7 @@ const SearchInput = () => {
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />
-        <button className=" text-dark  btn btn-outline-primary" type="submit">
+        <button className=" text-dark btn btn-outline-primary" type="submit">
           Search
         </button>
       </form>

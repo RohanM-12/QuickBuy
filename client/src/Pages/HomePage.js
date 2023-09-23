@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../Components/Layout/Layout";
-
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, Checkbox, Radio } from "antd";
 import { Prices } from "../Components/Prices";
@@ -9,7 +9,7 @@ const HomePage = () => {
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
-
+  const navigate = useNavigate();
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -174,7 +174,11 @@ const HomePage = () => {
                       ₹{p.price}
                     </p>
                     <div className="row m-1">
-                      <button href="#" className=" mb-1 btn btn-primary ">
+                      <button
+                        href="#"
+                        className=" mb-1 btn btn-primary "
+                        onClick={() => navigate(`/product/${p.slug}`)}
+                      >
                         More Details
                       </button>
                       <button href="#" className=" btn btn-secondary ">
