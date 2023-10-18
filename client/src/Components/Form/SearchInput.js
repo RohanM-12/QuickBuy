@@ -29,7 +29,7 @@ const SearchInput = () => {
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />
-        <button className=" text-dark btn btn-outline-primary" type="submit">
+        <button className=" searchBtn" type="submit">
           Search
         </button>
       </form>

@@ -116,9 +116,9 @@ const HomePage = () => {
 
   return (
     <Layout>
-      <div className="row mt-3">
-        <div className="container-fluid row mt-3">
-          <div className="mx-2 col-md-2">
+      <div className=" row mt-3">
+        <div className="  container-fluid row mt-3">
+          <div className=" border-black x-2 col-md-2">
             <h5 className="text-center">Filter by Category</h5>
             <div className="d-flext flex-column">
               {categories.map((c) => (

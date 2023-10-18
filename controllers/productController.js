@@ -264,3 +264,30 @@ export const searchProductController = async (req, res) => {
     });
   }
 };
+
+// similar products
+
+export const relatedProductController = async (req, res) => {
+  try {
+    const { pid, cid } = req.params;
+    const products = await productModel
+      .find({
+        category: cid,
+        _id: { $ne: pid }, // removing the current product displayed from the list of related products fetched
+      })
+      .select("-photo")
+      .limit(3)
+      .populate("category");
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      message: "Error while getting related products",
+      success: false,
+      error,
+    });
+  }
+};

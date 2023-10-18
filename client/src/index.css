@@ -9,7 +9,7 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
 
 /* navbar css */
 .navbar {
-  color: #4361ee;
+  color: #007bff;
   font-family: "Yanone Kaffeesatz", serif;
   font-size: 20px;
   line-height: 18px;
@@ -22,17 +22,17 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
 }
 .nav-link {
   font-weight: 400 !important;
-  color: #4361ee;
+  color: #007bff;
 }
 .navbar-brand {
   margin-left: 15px;
   font-size: 25px;
   font-weight: 900;
   letter-spacing: 3px;
-  color: #4361ee;
+  color: #007bff;
 }
 .active {
-  border-bottom: solid #4361ee 3px;
+  border-bottom: solid #007bff 3px;
   font-weight: bolder;
 }
 
@@ -40,7 +40,7 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
 .footer {
   color: white;
   padding: 40px;
-  background-color: #4362eec5;
+  background-color: #007bff;
 }
 .footer-link {
   color: white;
@@ -192,4 +192,27 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
   width: 100%;
   height: 25vh;
   object-fit: cover;
+}
+
+.border-black {
+  border: 0.5px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 2%;
+  margin-bottom: 1%;
+}
+
+.searchBtn {
+  color: black;
+  border: #007bff solid 2px;
+  border-radius: 8px;
+  padding: 4%;
+  background-color: white;
+  font-size: 90%;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.searchBtn:hover {
+  background-color: #007bff;
+  color: white;
 }
