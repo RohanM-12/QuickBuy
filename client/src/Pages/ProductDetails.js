@@ -95,9 +95,12 @@ const ProductDetails = () => {
       </div>
       <div className="row">
         <h3 className="m-3 fw-semibold">Similar Products</h3>
+        {relatedProducts.length < 1 && (
+          <p className="text-center">No similar products found...</p>
+        )}
         <div className="d-flex flex-wrap">
           {relatedProducts?.map((p) => (
-            <div className="card m-2" style={{ width: "15rem" }}>
+            <div key={p._id} className="card m-2" style={{ width: "15rem" }}>
               <img
                 src={`/api/v1/product/product-photo/${p._id}`}
                 className="card-img-top"

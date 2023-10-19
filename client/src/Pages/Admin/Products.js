@@ -30,39 +30,42 @@ const Products = () => {
 
   return (
     <Layout>
-      <div className="row">
-        <div className="col-md-3">
-          <AdminMenu />
-        </div>
-        <div className="col-sm-9 ">
-          <h1 className="text-center">All Products List</h1>
-
-          <div className="d-flex">
-            {products?.map((p) => (
-              <Link
-                className="text-decoration-none"
-                key={p._id}
-                to={`/dashboard/admin/product/${p.slug}`}
-              >
-                <div className="card m-2" style={{ width: "14rem" }}>
-                  <img
-                    src={`/api/v1/product/product-photo/${p._id}`}
-                    className="card-img-top"
-                    alt={p.name}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{trimText(p.name)}</h5>
-                    <p className="card-text">{trimText(p.description)}</p>
-                    <p
-                      style={{ fontSize: "20px", fontWeight: "bolder" }}
-                      className="card-text"
-                    >
-                      ₹{p.price}
-                    </p>
-                  </div>
+      <div className="container-fluid m-3 p-3">
+        <div className="row">
+          <div className="col-md-3">
+            <AdminMenu />
+          </div>
+          <div className="col-md-9">
+            <h1 className="text-center mb-4">All Products List</h1>
+            <div className="row row-cols-1 row-cols-md-5 row-cols-sm-2">
+              {products?.map((p) => (
+                <div className="col mb-4" key={p._id}>
+                  <Link
+                    className="text-decoration-none"
+                    to={`/dashboard/admin/product/${p.slug}`}
+                  >
+                    <div className="card" style={{ width: "100%" }}>
+                      <img
+                        src={`/api/v1/product/product-photo/${p._id}`}
+                        className="card-img-top"
+                        alt={p.name}
+                        style={{ objectFit: "cover", height: "200px" }} // Adjust the height of the image
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">{trimText(p.name)}</h5>
+                        <p className="card-text">{trimText(p.description)}</p>
+                        <p
+                          style={{ fontSize: "18px", fontWeight: "bold" }}
+                          className="card-text"
+                        >
+                          ₹{p.price}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
                 </div>
-              </Link>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

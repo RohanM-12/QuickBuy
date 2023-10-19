@@ -36,6 +36,11 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
   font-weight: bolder;
 }
 
+/* search bar */
+.searchbar {
+  max-width: 30px;
+}
+
 /* footer */
 .footer {
   color: white;

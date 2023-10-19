@@ -5,9 +5,11 @@ import { FaUserCircle } from "react-icons/fa";
 import { useAuth } from "../../Context/Auth";
 import toast from "react-hot-toast";
 import SearchInput from "../Form/SearchInput";
+import useCategory from "../../hooks/useCategory";
 // import { AiFillHome } from "react-icons/ai";
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const categories = useCategory();
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -19,7 +21,7 @@ const Header = () => {
   };
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top ">
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -36,18 +38,32 @@ const Header = () => {
             <Link to="/" className="navbar-brand">
               <GrShop /> QuickBuy
             </Link>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul className="  navbar-nav ms-auto mb-2 mb-lg-0">
               <SearchInput />
               <li className="  mx-2  nav-item">
                 <NavLink to="/" className="nav-link ">
                   Home
                 </NavLink>
               </li>
-              <li className=" mx-2  nav-item">
-                <NavLink to="/category" className="nav-link ">
-                  Category
-                </NavLink>
+              <li style={{ fontSize: "20px" }} className="dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Categories
+                </Link>
+                {console.log(categories)}
+                <ul style={{ fontSize: "20px" }} className="dropdown-menu">
+                  {categories.map((c) => (
+                    <li key={c.id}>
+                      <Link className="dropdown-item">{c.name}</Link>
+                    </li>
+                  ))}
+                </ul>
               </li>
+
               {!auth.user ? (
                 <>
                   <li className="  mx-2  nav-item">
@@ -64,8 +80,8 @@ const Header = () => {
               ) : (
                 <>
                   <li
-                    style={{ fontSize: "20px" }}
-                    className=" mx-2 nav-item dropstart  "
+                    style={{ fontSize: "15px" }}
+                    className=" mx-2 nav-item dropdown  "
                   >
                     <button
                       style={{ fontSize: "20px" }}
