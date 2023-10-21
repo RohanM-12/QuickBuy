@@ -180,3 +180,40 @@ export const testController = (req, res) => {
     res.send({ error });
   }
 };
+
+// updating user  Profile
+export const updatePofileController = async (req, res) => {
+  try {
+    const { name, email, password, address, phone } = req.body;
+    const user = await userModel.findById(req.user._id);
+
+    //password
+    if (!password && password.length < 6) {
+      return res.json({ error: "Password is required and 6 charecer long" });
+    }
+    const hashedPassword = password ? await hashPassword(password) : undefined;
+
+    const updatedUser = await userModel.findByIdAndUpdate(
+      req.user._id,
+      {
+        name: name || user.name,
+        password: password || user.password,
+        phone: phone || user.phone,
+        address: address || user.address,
+      },
+      { new: true }
+    );
+    res.status(200).send({
+      success: true,
+      message: "Profile updated success fully ",
+      updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      error,
+      message: "Error while getting user Profiles",
+      success: false,
+    });
+  }
+};

@@ -12,6 +12,7 @@ const SignUp = () => {
   const [address, setAddress] = useState("");
   const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
+
   //handle submit form functuoin
 
   const handleSubmit = async (e) => {

@@ -48,8 +48,8 @@ const ProductDetails = () => {
             src={`/api/v1/product/product-photo/${product._id}`}
             className=""
             alt={product.name}
-            height="300"
-            width="300"
+            height="400"
+            width="400"
           />
         </div>
         <div className="col-md-6">
