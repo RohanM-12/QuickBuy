@@ -7,9 +7,13 @@ import toast from "react-hot-toast";
 import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 // import { AiFillHome } from "react-icons/ai";
+import { useCart } from "../../Context/Cart";
+import { Badge } from "antd";
+
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const categories = useCategory();
+  const [cart] = useCart();
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -48,17 +52,27 @@ const Header = () => {
               <li style={{ fontSize: "20px" }} className="dropdown">
                 <Link
                   className="nav-link dropdown-toggle"
-                  role="button"
+                  to={"/categories"}
                   data-bs-toggle="dropdown"
-                  aria-expanded="false"
                 >
                   Categories
                 </Link>
-                {console.log(categories)}
+                {/* {console.log(categories)} */}
                 <ul style={{ fontSize: "20px" }} className="dropdown-menu">
+                  <li>
+                    <Link to={"/categoriesPage"} className="dropdown-item">
+                      All categories
+                      <div className="dropdown-divider"></div>
+                    </Link>
+                  </li>
                   {categories.map((c) => (
-                    <li key={c.id}>
-                      <Link className="dropdown-item">{c.name}</Link>
+                    <li key={c._id}>
+                      <Link
+                        to={`/category/${c.slug}`}
+                        className="dropdown-item"
+                      >
+                        {c.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -127,8 +141,16 @@ const Header = () => {
                 </>
               )}
               <li className="  mx-2  nav-item">
-                <NavLink to="/cart" className="nav-link" href="#">
-                  Cart (0)
+                <NavLink to="/cart" className="  nav-link" href="#">
+                  Cart{" "}
+                  <Badge
+                    className=" mx-1 site-badge-count-109"
+                    count={cart.length}
+                    style={{
+                      backgroundColor: "#007bff",
+                      position: "relative",
+                    }}
+                  />
                 </NavLink>
               </li>
             </ul>

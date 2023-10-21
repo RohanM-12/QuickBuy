@@ -3,10 +3,11 @@ import Layout from "../Components/Layout/Layout";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const ProductDetails = () => {
   const params = useParams();
   const [product, setProduct] = useState({});
-
+  const navigate = useNavigate();
   const [relatedProducts, setRelatedProducts] = useState([]);
   // inital prod details
   useEffect(() => {
@@ -115,9 +116,16 @@ const ProductDetails = () => {
                 >
                   ₹{p.price}
                 </p>
-                <div className="row m-1">
-                  <button href="#" className=" btn btn-secondary ">
+                <div className="row m-2 ">
+                  <button href="#" className=" mb-1  btn btn-secondary ">
                     Add to Cart{" "}
+                  </button>
+                  <button
+                    href="#"
+                    className=" btn btn-primary "
+                    onClick={() => navigate(`/product/${p.slug}`)}
+                  >
+                    More Details
                   </button>
                 </div>
               </div>

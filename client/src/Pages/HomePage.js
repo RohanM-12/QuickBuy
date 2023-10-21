@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, Checkbox, Radio } from "antd";
 import { Prices } from "../Components/Prices";
+import { useCart } from "../Context/Cart";
+import toast from "react-hot-toast";
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -13,6 +15,7 @@ const HomePage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [cart, setCart] = useCart();
 
   // get all category
   const getAllCategory = async () => {
@@ -185,7 +188,14 @@ const HomePage = () => {
                       >
                         More Details
                       </button>
-                      <button href="#" className=" btn btn-secondary ">
+                      <button
+                        href="#"
+                        className=" btn btn-secondary "
+                        onClick={() => {
+                          setCart([...cart, p]);
+                          toast.success("item added to cart");
+                        }}
+                      >
                         Add to Cart{" "}
                       </button>
                     </div>
