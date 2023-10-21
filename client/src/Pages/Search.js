@@ -12,7 +12,7 @@ const Search = () => {
           <h1>Search Results</h1>
           <h6>
             {values?.results.length < 1
-              ? "No Products Found "
+              ? "No Products Found  "
               : `Found ${values.results.length} matching results for "${values.keyword}" `}
           </h6>
           <div className="d-flex flex-wrap mt-4">

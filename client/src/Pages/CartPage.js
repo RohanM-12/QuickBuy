@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import Layout from "../Components/Layout/Layout";
 import { useCart } from "../Context/Cart";
 import { useAuth } from "../Context/Auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Modal from "antd/es/modal/Modal";
+import toast from "react-hot-toast";
+import { Button } from "antd";
 const CartPage = () => {
   const [cart, setCart] = useCart();
   const [auth, setAuth] = useAuth();
@@ -28,7 +30,7 @@ const CartPage = () => {
   // Modal
   const handleModalOk = () => {
     setIsModalOpen(false);
-    localStorage.clear();
+    localStorage.removeItem("cart");
     window.location.reload();
   };
 
@@ -54,6 +56,12 @@ const CartPage = () => {
             <h1 className="text-center bg-light p-2 mb-1 ">
               {`Hello ${auth?.token && auth?.user?.name}`}
             </h1>
+            <div
+              style={{
+                "border-top": "1px solid #000 ",
+                "margin-bottom": "10px",
+              }}
+            ></div>
             <h4 className="text-center mb-4">
               {cart?.length
                 ? `You have ${cart.length} items in your cart ${
@@ -66,7 +74,7 @@ const CartPage = () => {
         <div className="row">
           <div className="col-md-7">
             {cart?.map((p) => (
-              <div className="row mb-2 card flex-row card-img-top">
+              <div key={p._id} className="row mb-2 card flex-row card-img-top">
                 <div className="col-md-4">
                   <img
                     src={`/api/v1/product/product-photo/${p._id}`}
@@ -94,24 +102,50 @@ const CartPage = () => {
           </div>
           <div className="text-center col-md-4">
             <h2>Cart Summary</h2>
-            <p> Checkout | Checkout </p>
-            <h3 style={{ fontSize: "25px", fontWeight: "bolder" }}>
+            <hr />
+            <div className="divider"></div>
+            <h5 className="mb-4"> Total | Checkout </h5>
+            <h3
+              className="mb-3"
+              style={{ fontSize: "25px", fontWeight: "bolder" }}
+            >
               Total : ₹ {totalPrice()}{" "}
             </h3>
+            <hr className="mb-4" />
             <div className="mb-3 ">
-              <input
-                type="text"
-                onChange={(e) => setAddr(e.target.value)}
-                className=" m-3  form-control "
-                placeholder="Enter address to deliver "
-                required
-              />
-              <button
-                className=" m-3 p-2 btn btn-success"
-                onClick={() => setIsModalOpen(true)}
-              >
-                Proceed to checkout
-              </button>
+              {cart.length > 0 && auth?.token ? (
+                <>
+                  <input
+                    type="text"
+                    onChange={(e) => setAddr(e.target.value)}
+                    className=" text-center m-3  form-control "
+                    placeholder="Enter address to deliver "
+                    required
+                  />
+                  <button
+                    className=" m-3 p-2 btn btn-success"
+                    onClick={() => {
+                      addr
+                        ? setIsModalOpen(true)
+                        : toast.error("Address is required");
+                    }}
+                  >
+                    Proceed to checkout
+                  </button>
+                </>
+              ) : !auth?.token && cart.length > 0 ? (
+                <>
+                  <h5> Please Login to Checkout...</h5>
+                  <button
+                    onClick={() => navigate("/login")}
+                    className=" m-3 btn btn-warning"
+                  >
+                    LogIn
+                  </button>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
             {isModalOpen ? (
               <Modal

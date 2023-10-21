@@ -28,17 +28,22 @@ const Profiles = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/signup", {
+      const { data } = await axios.put("/api/v1/auth/profile", {
         name,
         email,
         password,
         phone,
         address,
       });
-      if (res && res.data.success) {
-        toast.success(res.data && res.data.message);
+      if (data?.error) {
+        toast.error(data?.error);
       } else {
-        toast.error(res.data.message);
+        setAuth({ ...auth, user: data?.updatedUser });
+        let ls = localStorage.getItem("auth");
+        ls = JSON.parse(ls);
+        ls.user = data.updatedUser;
+        localStorage.setItem("auth", JSON.stringify(ls));
+        toast.success("Profile updated successfully ");
       }
     } catch (error) {
       console.log(error);
@@ -66,7 +71,6 @@ const Profiles = () => {
                       className=" form-control "
                       id="exampleInputEmail1"
                       placeholder="Name"
-                      required
                     />
                   </div>
                   <div className="mb-3">
@@ -77,7 +81,6 @@ const Profiles = () => {
                       className="form-control"
                       id="exampleInputEmail1"
                       placeholder="Email"
-                      required
                       disabled
                     />
                   </div>
@@ -89,7 +92,6 @@ const Profiles = () => {
                       className="form-control"
                       id="exampleInputPassword1"
                       placeholder="Password"
-                      required
                     />
                   </div>
                   <div className="mb-3">
@@ -100,7 +102,6 @@ const Profiles = () => {
                       className="form-control"
                       id="exampleInputEmail1"
                       placeholder=" Phone No."
-                      required
                     />
                   </div>
                   <div className="mb-3 ">
@@ -111,7 +112,6 @@ const Profiles = () => {
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                       placeholder=" Addresss"
-                      required
                     />
                   </div>
 
