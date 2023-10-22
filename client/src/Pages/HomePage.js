@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import Layout from "../Components/Layout/Layout";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Button, Checkbox, Radio } from "antd";
+import { Checkbox, Radio } from "antd";
 import { Prices } from "../Components/Prices";
 import { useCart } from "../Context/Cart";
 import toast from "react-hot-toast";
+import { Carousel } from "antd";
+
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -27,6 +29,15 @@ const HomePage = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  // slideshow
+  const contentStyle = {
+    height: "160px",
+    color: "#fff",
+    lineHeight: "160px",
+    textAlign: "center",
+    background: "#364d79",
   };
 
   // getall product
@@ -122,7 +133,8 @@ const HomePage = () => {
       <div className=" row mt-3">
         <div className="  container-fluid row mt-3">
           <div className=" border-black x-2 col-md-2">
-            <h5 className="text-center">Filter by Category</h5>
+            <h5 className=" mt-4 fw-bolder text-center">Filter by Category</h5>
+            <hr />
             <div className="d-flext flex-column">
               {categories.map((c) => (
                 <Checkbox
@@ -135,7 +147,8 @@ const HomePage = () => {
               ))}
             </div>
             {/* price filter */}
-            <h5 className="mt-4 text-center">Filter by Price</h5>
+            <h5 className=" fw-bolder mt-4 text-center">Filter by Price</h5>
+            <hr />
             <div className="d-flex flex-column">
               <Radio.Group onChange={(e) => setRadio(e.target.value)}>
                 {Prices?.map((p) => (
@@ -149,7 +162,7 @@ const HomePage = () => {
             </div>
             <div className="d-flex flex-column">
               <button
-                className="m-2 btn btn-primary"
+                className="mt-4 btn btn-primary"
                 onClick={() => window.location.reload()}
               >
                 Clear all Filters
@@ -158,8 +171,36 @@ const HomePage = () => {
           </div>
 
           <div className="col-md-9">
-            <h1 className="text-center">All Products</h1>
-            <div className="d-flex flex-wrap">
+            <h1 className=" fw-bold text-center">All Products</h1>
+            <div className="  container">
+              <Carousel autoplay>
+                <img
+                  style={contentStyle}
+                  src={process.env.PUBLIC_URL + "/Images/banner1.jpg"}
+                  alt="Banner1"
+                  height={300}
+                />
+                <img
+                  style={contentStyle}
+                  src={process.env.PUBLIC_URL + "/Images/banner2.jpg"}
+                  alt="Banner2"
+                  height={300}
+                />
+                <img
+                  style={contentStyle}
+                  src={process.env.PUBLIC_URL + "/Images/banner3.jpg"}
+                  alt="Banner2"
+                  height={300}
+                />
+                <img
+                  style={contentStyle}
+                  src={process.env.PUBLIC_URL + "/Images/banner4.jpg"}
+                  alt="Banner2"
+                  height={300}
+                />
+              </Carousel>
+            </div>
+            <div className=" mt-3 d-flex flex-wrap">
               {products?.map((p) => (
                 <div
                   key={p._id}

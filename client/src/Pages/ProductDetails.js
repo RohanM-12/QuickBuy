@@ -2,13 +2,17 @@ import React from "react";
 import Layout from "../Components/Layout/Layout";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useCart } from "../Context/Cart";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BiSolidCartAlt } from "react-icons/bi";
+import toast from "react-hot-toast";
 const ProductDetails = () => {
   const params = useParams();
   const [product, setProduct] = useState({});
   const navigate = useNavigate();
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [cart, setCart] = useCart();
   // inital prod details
   useEffect(() => {
     if (params?.slug) getProduct();
@@ -88,10 +92,22 @@ const ProductDetails = () => {
               </tr>
             </tbody>
           </table>
-
-          <button href="#" className=" btn btn-secondary ">
-            Add to Cart{" "}
-          </button>
+          <div className=" d-flex justify-content-center  row">
+            <button
+              href="#"
+              className="w-50 btn btn-secondary "
+              onClick={() => {
+                setCart([...cart, product]);
+                localStorage.setItem(
+                  "cart",
+                  JSON.stringify([...cart, product])
+                );
+                toast.success("item added to cart");
+              }}
+            >
+              <BiSolidCartAlt /> {" - "}Add to Cart
+            </button>
+          </div>
         </div>
       </div>
       <div className="row">

@@ -45,13 +45,11 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
   color: white;
   border: #007bff solid 2px;
   border-radius: 15px;
-  padding: 4%;
+
   background-color: #007bff;
   font-size: 90%;
   margin-left: 4px;
   margin-right: 4px;
-  max-height: 40px;
-  max-width: 60px;
 }
 .searchBtn :hover {
   background-color: #2ca6fc;
@@ -93,7 +91,22 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
   color: white;
   background-color: #4361ee;
 }
+/* Hover zoom */
+.zoom-effect img {
+  transition: transform 0.3s; /* Set the transition duration */
+}
 
+.zoom-effect img:hover {
+  transform: scale(1.1); /* Increase the scale to zoom in */
+}
+
+/* vertical ivider  */
+.vertical-divider {
+  .vertical-divider {
+    border-right: 1px solid black;
+    height: 100%;
+  }
+}
 /* ==============signup================== */
 .form-control {
   color: black;

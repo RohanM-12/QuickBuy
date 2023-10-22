@@ -1,6 +1,9 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { GrShop } from "react-icons/gr";
+import { AiFillHome } from "react-icons/ai";
+import { BsCartFill, BsList } from "react-icons/bs";
+
 import { FaUserCircle } from "react-icons/fa";
 import { useAuth } from "../../Context/Auth";
 import toast from "react-hot-toast";
@@ -9,6 +12,7 @@ import useCategory from "../../hooks/useCategory";
 // import { AiFillHome } from "react-icons/ai";
 import { useCart } from "../../Context/Cart";
 import { Badge } from "antd";
+import { BiSolidDashboard, BiSolidLogInCircle } from "react-icons/bi";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -42,10 +46,11 @@ const Header = () => {
             <Link to="/" className="navbar-brand">
               <GrShop /> QuickBuy
             </Link>
-            <ul className="  navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul className="  navbar-nav ms-auto mb-1 mb-lg-0">
               <SearchInput />
               <li className="  mx-2  nav-item">
                 <NavLink to="/" className="nav-link ">
+                  <AiFillHome /> {" - "}
                   Home
                 </NavLink>
               </li>
@@ -59,12 +64,6 @@ const Header = () => {
                 </Link>
                 {/* {console.log(categories)} */}
                 <ul style={{ fontSize: "20px" }} className="dropdown-menu">
-                  <li>
-                    <Link to={"/categoriesPage"} className="dropdown-item">
-                      All categories
-                      <div className="dropdown-divider"></div>
-                    </Link>
-                  </li>
                   {categories.map((c) => (
                     <li key={c._id}>
                       <Link
@@ -121,6 +120,7 @@ const Header = () => {
                             auth?.user?.role === 1 ? "admin" : "user"
                           }`}
                         >
+                          <BiSolidDashboard /> {" - "}
                           Dashboard
                         </NavLink>
                         <NavLink
@@ -129,20 +129,19 @@ const Header = () => {
                           className="nav-link"
                           href="#"
                         >
+                          <BiSolidLogInCircle /> {" - "}
                           LogOut
                         </NavLink>
                       </li>
                     </ul>
                   </li>
-
-                  {/* /////////////////////////////////////////////////////// */}
-
-                  {/* ///////////////////////////////////////////////////////////////////// */}
                 </>
               )}
-              <li className="  mx-2  nav-item">
+              <li className="  mx-1  nav-item">
                 <NavLink to="/cart" className="  nav-link" href="#">
-                  Cart{" "}
+                  <BsCartFill />
+                  {" - "}
+                  Cart
                   <Badge
                     className=" mx-1 site-badge-count-109"
                     count={cart.length}
@@ -151,6 +150,12 @@ const Header = () => {
                       position: "relative",
                     }}
                   />
+                </NavLink>
+              </li>
+              <li className="  mx-1  nav-item">
+                <NavLink to="/about" className="nav-link ">
+                  <BsList /> {" - "}
+                  About/Portfolio
                 </NavLink>
               </li>
             </ul>

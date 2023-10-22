@@ -1,7 +1,9 @@
 import React from "react";
 import { useSearch } from "../../Context/search";
 import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
+import { BiSolidSearch } from "react-icons/bi";
 const SearchInput = () => {
   const [values, setValues] = useSearch();
   const navigate = useNavigate();
@@ -29,7 +31,9 @@ const SearchInput = () => {
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />
-        <button className=" mx-3 searchBtn" type="submit">
+
+        <button className=" mx-4 w-100 searchBtn" type="submit">
+          <BiSolidSearch /> {" - "}
           Search
         </button>
       </form>
