@@ -152,12 +152,12 @@ const Header = () => {
                   />
                 </NavLink>
               </li>
-              <li className="  mx-1  nav-item">
+              {/* <li className="  mx-1  nav-item">
                 <NavLink to="/about" className="nav-link ">
                   <BsList /> {" - "}
                   About/Portfolio
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

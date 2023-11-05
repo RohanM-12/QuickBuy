@@ -35,7 +35,7 @@ const About = () => {
               />
             </div>
           </div>
-          {/* <div className="col-md-1  vertical-divider"></div> */}
+
           <div className="col-md-6">
             <h2 className=" mt-3 text-center "> About | Rohan Mali </h2>
             <p style={{ "text-align": "justify" }}>
@@ -74,15 +74,24 @@ const About = () => {
                   </li>
                 </ul>
               </div>
-              <div className=" row">
-                <h4>Download Rohan's Resume :</h4>
-                <Link className="m-4" to={""}>
-                  <button className=" m-2 w-25  btn btn-outline-primary">
-                    {" "}
-                    <BsCloudDownloadFill /> {" - "} Resume
-                  </button>
-                </Link>
-              </div>
+            </div>
+            <div className=" row">
+              <h4>More Projects :</h4>
+              <Link className="m-4" to={""}>
+                <button className=" m-2 w-25  btn btn-outline-primary">
+                  {" "}
+                  <BsCloudDownloadFill /> {" - "} Resume
+                </button>
+              </Link>
+            </div>
+            <div className=" row">
+              <h4>Download Rohan's Resume :</h4>
+              <Link className="m-4" to={""}>
+                <button className=" m-2 w-25  btn btn-outline-primary">
+                  {" "}
+                  <BsCloudDownloadFill /> {" - "} Resume
+                </button>
+              </Link>
             </div>
           </div>
         </div>
