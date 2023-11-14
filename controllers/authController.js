@@ -221,10 +221,10 @@ export const updatePofileController = async (req, res) => {
 // get all Users
 export const getUsersController = async (req, res) => {
   try {
-    const response = await userModel.find();
+    const users = await userModel.find();
     res.status(200).send({
       success: true,
-      response,
+      users,
     });
   } catch (error) {
     console.log(error);
