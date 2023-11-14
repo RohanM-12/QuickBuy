@@ -25,11 +25,13 @@ const HomePage = () => {
   //get  Recommendations
   const getRecommendations = async () => {
     const userEmail = auth && auth[0] && auth[0].user && auth[0].user.email;
+
     if (userEmail) {
       try {
         const response = await axios.get(
           `/api/v1/product/get-recommendations/${userEmail}`
         );
+
         setRecommendations(response.data.sortedProducts);
       } catch (error) {
         console.error("Error fetching recommendations:", error);
@@ -51,6 +53,22 @@ const HomePage = () => {
     }
   };
 
+  // carousel recommedations
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => {
+        const nextSlide = (prevSlide + 1) % products.length;
+        return nextSlide;
+      });
+    }, 5000); // Change slide every 5 seconds (5000 milliseconds)
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [products.length]);
+
   // slideshow
   const contentStyle = {
     height: "160px",
@@ -67,6 +85,7 @@ const HomePage = () => {
       const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
       setLoading(false);
       setProducts(data.products);
+      getRecommendations();
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -192,34 +211,132 @@ const HomePage = () => {
 
           <div className="col-md-9">
             <h1 className=" fw-bold text-center">All Products</h1>
-            <div className="  container">
-              <Carousel autoplay>
-                <img
-                  style={contentStyle}
-                  src={process.env.PUBLIC_URL + "/Images/banner1.jpg"}
-                  alt="Banner1"
-                  height={300}
-                />
-                <img
-                  style={contentStyle}
-                  src={process.env.PUBLIC_URL + "/Images/banner2.jpg"}
-                  alt="Banner2"
-                  height={300}
-                />
-                <img
-                  style={contentStyle}
-                  src={process.env.PUBLIC_URL + "/Images/banner3.jpg"}
-                  alt="Banner2"
-                  height={300}
-                />
-                <img
-                  style={contentStyle}
-                  src={process.env.PUBLIC_URL + "/Images/banner4.jpg"}
-                  alt="Banner2"
-                  height={300}
-                />
-              </Carousel>
-            </div>
+            <hr />
+            {auth && auth[0] && auth[0].user ? (
+              <>
+                <h5 className=" text-center mt-4 fw-bolder ">
+                  Recommendations
+                </h5>
+                <div className=" mt-4 container">
+                  <div className="col-md-11 ">
+                    <Carousel
+                      autoplay
+                      autoplaySpeed={1000}
+                      dotPosition="none"
+                      currentSlide={currentSlide}
+                    >
+                      {Array.isArray(recommendations) &&
+                        recommendations.map((recommendation, index) => (
+                          <div key={recommendation._id} className="col-md-8">
+                            <div
+                              key={recommendation._id}
+                              style={{
+                                marginLeft: "10px",
+                                width: "1000px",
+                                height: "300px",
+                              }}
+                              className="row card flex-row card-img-top"
+                            >
+                              <div className=" mx-4 col-md-3">
+                                <img
+                                  src={`/api/v1/product/product-photo/${recommendation._id}`}
+                                  className=" w-100 h-100 card-img-top"
+                                  alt={recommendation.name}
+                                />
+                              </div>
+                              <div className=" mx-4 col-md-4">
+                                <table className="m-4 w-100 table table text-s">
+                                  <tbody className="h5">
+                                    <tr>
+                                      <th
+                                        scope="row"
+                                        style={{ fontWeight: "bold" }}
+                                      >
+                                        Name
+                                      </th>
+                                      <td>{recommendation.name}</td>
+                                    </tr>
+                                    <tr>
+                                      <th
+                                        scope="row"
+                                        style={{ fontWeight: "bold" }}
+                                      >
+                                        Description
+                                      </th>
+                                      <td>
+                                        {" "}
+                                        {recommendation.description.substring(
+                                          0,
+                                          45
+                                        )}
+                                        ...
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th
+                                        scope="row"
+                                        style={{ fontWeight: "bold" }}
+                                      >
+                                        Price
+                                      </th>
+                                      <td style={{ fontWeight: "bold" }}>
+                                        {" "}
+                                        <p
+                                          style={{
+                                            fontSize: "30px",
+                                            fontWeight: "bold",
+                                          }}
+                                        >
+                                          {" "}
+                                          ₹{" "}
+                                          {recommendation.price.toLocaleString()}
+                                        </p>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                    </Carousel>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {" "}
+                <div className="  container">
+                  <Carousel autoplay>
+                    <img
+                      style={contentStyle}
+                      src={process.env.PUBLIC_URL + "/Images/banner1.jpg"}
+                      alt="Banner1"
+                      height={300}
+                    />
+                    <img
+                      style={contentStyle}
+                      src={process.env.PUBLIC_URL + "/Images/banner2.jpg"}
+                      alt="Banner2"
+                      height={300}
+                    />
+                    <img
+                      style={contentStyle}
+                      src={process.env.PUBLIC_URL + "/Images/banner3.jpg"}
+                      alt="Banner2"
+                      height={300}
+                    />
+                    <img
+                      style={contentStyle}
+                      src={process.env.PUBLIC_URL + "/Images/banner4.jpg"}
+                      alt="Banner2"
+                      height={300}
+                    />
+                  </Carousel>
+                </div>
+              </>
+            )}
+            <hr />
             <div className=" mt-3 d-flex flex-wrap">
               {products?.map((p) => (
                 <div
@@ -239,7 +356,7 @@ const HomePage = () => {
                       style={{ fontSize: "20px", fontWeight: "bolder" }}
                       className="card-text"
                     >
-                      ₹{p.price}
+                      ₹{p.price.toLocaleString()}
                     </p>
                     <div className="row m-1">
                       <button
