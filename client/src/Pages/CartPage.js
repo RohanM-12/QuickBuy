@@ -58,8 +58,8 @@ const CartPage = () => {
             </h1>
             <div
               style={{
-                "border-top": "1px solid #000 ",
-                "margin-bottom": "10px",
+                borderTop: "1px solid #000 ",
+                marginBottom: "10px",
               }}
             ></div>
             <h4 className="text-center mb-4">

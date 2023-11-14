@@ -5,6 +5,7 @@ import {
   testController,
   forgotPasswordController,
   updatePofileController,
+  getUsersController,
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 const router = express.Router();
@@ -33,4 +34,6 @@ router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
 
 router.put("/profile", requireSignIn, updatePofileController);
 
+// get all users
+router.get("/users", getUsersController);
 export default router;
