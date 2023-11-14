@@ -7,6 +7,7 @@ import { Prices } from "../Components/Prices";
 import { useCart } from "../Context/Cart";
 import toast from "react-hot-toast";
 import { Carousel } from "antd";
+import { useAuth } from "../Context/Auth";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -18,7 +19,26 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useCart();
+  const [recommendations, setRecommendations] = useState([]);
+  const auth = useAuth();
 
+  //get  Recommendations
+  const getRecommendations = async () => {
+    const userEmail = auth && auth[0] && auth[0].user && auth[0].user.email;
+    if (userEmail) {
+      try {
+        const response = await axios.get(
+          `/api/v1/product/get-recommendations/${userEmail}`
+        );
+        setRecommendations(response.data.sortedProducts);
+      } catch (error) {
+        console.error("Error fetching recommendations:", error);
+      }
+    }
+  };
+  useEffect(() => {
+    getRecommendations();
+  }, [auth]);
   // get all category
   const getAllCategory = async () => {
     try {

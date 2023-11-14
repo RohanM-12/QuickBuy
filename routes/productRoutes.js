@@ -10,6 +10,7 @@ import {
   productFiltersController,
   productListController,
   productPhotoController,
+  recommendationsController,
   relatedProductController,
   searchProductController,
   updateProductController,
