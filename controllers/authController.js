@@ -217,3 +217,19 @@ export const updatePofileController = async (req, res) => {
     });
   }
 };
+
+// get all Users
+export const getUsersController = async (req, res) => {
+  try {
+    const response = await userModel.find();
+    res.status(200).send({
+      success: true,
+      response,
+    });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(400)
+      .send({ success: false, message: "error in getting users", error });
+  }
+};
