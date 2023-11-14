@@ -25,12 +25,12 @@ const Users = () => {
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <h1>All Users</h1>
+            <h1 className="text-center">All Users</h1>
             <div className="container mt-5">
               <table className="table">
                 <thead>
                   <tr>
-                    <th>First Name</th>
+                    <th> Name</th>
                     <th>Email</th>
                     <th>Address</th>
                     <th>Phone</th>
