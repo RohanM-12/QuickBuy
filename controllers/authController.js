@@ -233,3 +233,40 @@ export const getUsersController = async (req, res) => {
       .send({ success: false, message: "error in getting users", error });
   }
 };
+
+// iserrting keywords in preference array
+
+export const insertKeywordController = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const { keyword } = req.body;
+
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    let preferences = user.preferences || [];
+    preferences.push(keyword);
+
+    if (preferences.length > 6) {
+      preferences = preferences.slice(1);
+    }
+    await userModel.findOneAndUpdate({ email }, { preferences }, { new: true });
+
+    res.status(200).send({
+      success: true,
+      preferences,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: true,
+      error,
+      message: "Error in inserting the keywords in database",
+    });
+  }
+};
