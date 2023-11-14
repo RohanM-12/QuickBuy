@@ -221,7 +221,7 @@ const HomePage = () => {
                   <div className="col-md-11 ">
                     <Carousel
                       autoplay
-                      autoplaySpeed={1000}
+                      autoplaySpeed={4000}
                       dotPosition="none"
                       currentSlide={currentSlide}
                     >

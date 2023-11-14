@@ -7,6 +7,7 @@ import {
   BsMailbox,
   BsCloudDownloadFill,
 } from "react-icons/bs";
+import { MdOutlineGrid3X3 } from "react-icons/md";
 const About = () => {
   return (
     <Layout>
@@ -24,7 +25,9 @@ const About = () => {
               electronics to fashion, and securely complete transactions.
               Whether you're a buyer looking for great deals or a seller eager
               to reach a broad audience, QuickBuy provides a seamless platform
-              for efficient and convenient online commerce.
+              for efficient and convenient online commerce. AI-based
+              recommendation system to track user search history and generate
+              personalized recommendations for each user.
             </p>
             <div className=" mt-5 zoom-effect">
               <img
@@ -77,19 +80,10 @@ const About = () => {
             </div>
             <div className=" row">
               <h4>More Projects :</h4>
-              <Link className="m-4" to={""}>
+              <Link className="m-4" to={"http://tic-tac-toe-byrm.surge.sh/"}>
                 <button className=" m-2 w-25  btn btn-outline-primary">
                   {" "}
-                  <BsCloudDownloadFill /> {" - "} Resume
-                </button>
-              </Link>
-            </div>
-            <div className=" row">
-              <h4>Download Rohan's Resume :</h4>
-              <Link className="m-4" to={""}>
-                <button className=" m-2 w-25  btn btn-outline-primary">
-                  {" "}
-                  <BsCloudDownloadFill /> {" - "} Resume
+                  <MdOutlineGrid3X3 /> TIC TAC TOE Game
                 </button>
               </Link>
             </div>

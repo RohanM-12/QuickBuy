@@ -2,14 +2,14 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { GrShop } from "react-icons/gr";
 import { AiFillHome } from "react-icons/ai";
-import { BsCartFill, BsList } from "react-icons/bs";
+import { BsCartFill, BsFillInfoCircleFill } from "react-icons/bs";
 
 import { FaUserCircle } from "react-icons/fa";
 import { useAuth } from "../../Context/Auth";
 import toast from "react-hot-toast";
 import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
-// import { AiFillHome } from "react-icons/ai";
+
 import { useCart } from "../../Context/Cart";
 import { Badge } from "antd";
 import { BiSolidDashboard, BiSolidLogInCircle } from "react-icons/bi";
@@ -62,7 +62,7 @@ const Header = () => {
                 >
                   Categories
                 </Link>
-                {/* {console.log(categories)} */}
+
                 <ul style={{ fontSize: "20px" }} className="dropdown-menu">
                   {categories.map((c) => (
                     <li key={c._id}>
@@ -152,12 +152,12 @@ const Header = () => {
                   />
                 </NavLink>
               </li>
-              {/* <li className="  mx-1  nav-item">
+              <li className="  mx-1  nav-item">
                 <NavLink to="/about" className="nav-link ">
-                  <BsList /> {" - "}
+                  <BsFillInfoCircleFill /> {" - "}
                   About/Portfolio
                 </NavLink>
-              </li> */}
+              </li>
             </ul>
           </div>
         </div>

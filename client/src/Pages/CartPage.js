@@ -41,7 +41,7 @@ const CartPage = () => {
     try {
       cart?.map((item) => {
         total = total + item.price;
-        //  return total;
+        // return total;
       });
       return total.toString();
     } catch (error) {
@@ -54,7 +54,7 @@ const CartPage = () => {
         <div className="row">
           <div className="col-md-12">
             <h1 className="text-center bg-light p-2 mb-1 ">
-              {`Hello ${auth?.token && auth?.user?.name}`}
+              {`Hello ${auth && auth[0] && auth[0].user && auth[0].user?.name}`}
             </h1>
             <div
               style={{
@@ -65,7 +65,9 @@ const CartPage = () => {
             <h4 className="text-center mb-4">
               {cart?.length
                 ? `You have ${cart.length} items in your cart ${
-                    auth?.token ? "" : "Please Login to checkout"
+                    auth && auth[0] && auth[0].user
+                      ? ""
+                      : "Please Login to checkout"
                   }`
                 : "Your Cart is empty"}
             </h4>
@@ -113,7 +115,7 @@ const CartPage = () => {
             </h3>
             <hr className="mb-4" />
             <div className="mb-3 ">
-              {cart.length > 0 && auth?.token ? (
+              {cart.length > 0 && auth && auth[0] && auth[0].user ? (
                 <>
                   <input
                     type="text"
@@ -133,7 +135,7 @@ const CartPage = () => {
                     Proceed to checkout
                   </button>
                 </>
-              ) : !auth?.token && cart.length > 0 ? (
+              ) : !auth && auth[0] && auth[0].user && cart.length > 0 ? (
                 <>
                   <h5> Please Login to Checkout...</h5>
                   <button
