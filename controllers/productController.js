@@ -313,7 +313,27 @@ export const productCategoryController = async (req, res) => {
     });
   }
 };
+const calculateSimilarity = (userPreferences, product) => {
+  if (userPreferences.length === 0 || !product.name || !product.description) {
+    return 0;
+  }
 
+  const productNameLower = product.name.toLowerCase();
+  const productDescriptionLower = product.description.toLowerCase();
+
+  const similarity = userPreferences.reduce((count, preference) => {
+    const preferenceLower = preference.toLowerCase();
+    if (
+      productNameLower.includes(preferenceLower) ||
+      productDescriptionLower.includes(preferenceLower)
+    ) {
+      return count + 1;
+    }
+    return count;
+  }, 0);
+
+  return similarity;
+};
 // calculate reccomendations
 export const recommendationsController = async (req, res) => {
   try {
