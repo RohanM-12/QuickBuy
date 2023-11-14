@@ -36,4 +36,8 @@ router.put("/profile", requireSignIn, updatePofileController);
 
 // get all users
 router.get("/users", getUsersController);
+
+// insert Search Keywords
+router.put("/insertkeyword/:email", insertKeywordController);
+
 export default router;
