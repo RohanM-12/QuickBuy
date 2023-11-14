@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import Layout from "../Components/Layout/Layout";
 import { useCart } from "../Context/Cart";
 import { useAuth } from "../Context/Auth";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Modal from "antd/es/modal/Modal";
 import toast from "react-hot-toast";
-import { Button } from "antd";
+
 const CartPage = () => {
   const [cart, setCart] = useCart();
-  const [auth, setAuth] = useAuth();
+  const auth = useAuth();
   const [addr, setAddr] = useState("");
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);

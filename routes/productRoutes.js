@@ -68,4 +68,7 @@ router.get("/related-product/:pid/:cid", relatedProductController);
 
 router.get("/product-category/:slug", productCategoryController);
 
+//user preference
+router.get("/get-recommendations/:email", recommendationsController);
+
 export default router;

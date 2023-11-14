@@ -313,3 +313,44 @@ export const productCategoryController = async (req, res) => {
     });
   }
 };
+
+// calculate reccomendations
+export const recommendationsController = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const user = await userModel.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    const preferences = user.preferences || [];
+    const products = await productModel.find();
+
+    const recommendations = [];
+    products.forEach((product) => {
+      const similarity = calculateSimilarity(preferences, product);
+      recommendations.push({ product, similarity });
+    });
+
+    recommendations.sort((a, b) => b.similarity - a.similarity);
+
+    const sortedProducts = recommendations.map(
+      (recommendation) => recommendation.product
+    );
+
+    res.status(200).json({
+      success: true,
+      sortedProducts,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      message: "Error while getting recommendations",
+      error,
+      success: false,
+    });
+  }
+};
