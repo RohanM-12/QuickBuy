@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import { BiSolidSearch } from "react-icons/bi";
+import { useAuth } from "../../Context/Auth";
 const SearchInput = () => {
   const [values, setValues] = useSearch();
+  const auth = useAuth();
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     try {
@@ -14,6 +16,12 @@ const SearchInput = () => {
         `/api/v1/product/search/${values.keyword}`
       );
       setValues({ ...values, results: data });
+      const userEmail = auth && auth[0].user.email;
+      if (userEmail && values.keyword) {
+        const keyword = values.keyword;
+        axios.put(`/api/v1/auth/insertkeyword/${userEmail}`, { keyword });
+      }
+
       navigate("/search");
     } catch (error) {
       console.log(error);
