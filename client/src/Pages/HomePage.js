@@ -59,15 +59,15 @@ const HomePage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => {
-        const nextSlide = (prevSlide + 1) % products.length;
+        const nextSlide = (prevSlide + 1) % recommendations.length;
         return nextSlide;
       });
-    }, 5000); // Change slide every 5 seconds (5000 milliseconds)
+    }, 4000); // Change slide every 5 seconds (5000 milliseconds)
 
     return () => {
       clearInterval(interval);
     };
-  }, [products.length]);
+  }, [recommendations]);
 
   // slideshow
   const contentStyle = {
@@ -85,6 +85,7 @@ const HomePage = () => {
       const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
       setLoading(false);
       setProducts(data.products);
+
       getRecommendations();
     } catch (error) {
       setLoading(false);

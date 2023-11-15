@@ -16,7 +16,7 @@ const SearchInput = () => {
         `/api/v1/product/search/${values.keyword}`
       );
       setValues({ ...values, results: data });
-      const userEmail = auth && auth[0].user.email;
+      const userEmail = auth && auth[0].user && auth[0].user.email;
       if (userEmail && values.keyword) {
         const keyword = values.keyword;
         axios.put(`/api/v1/auth/insertkeyword/${userEmail}`, { keyword });
