@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../../Context/Auth";
 import axios from "axios";
+import { RiLoginCircleFill } from "react-icons/ri";
 
 const Login = () => {
   const [auth, setAuth] = useAuth();
@@ -72,7 +73,7 @@ const Login = () => {
               Forgot Password ?
             </label>
             <button type="submit" className=" btn-submit  btn btn-primary">
-              LogIn
+              <RiLoginCircleFill /> LogIn
             </button>
           </form>
         </div>

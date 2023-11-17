@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Layout from "../../Components/Layout/Layout";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-
+import { IoPersonAdd } from "react-icons/io5";
 import axios from "axios";
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -43,7 +43,7 @@ const SignUp = () => {
       <div className="signup">
         <div className="form-container">
           <form onSubmit={handleSubmit} className="">
-            <h1 className="signup-title">SignIn</h1>
+            <h1 className="signup-title">SignUp</h1>
             <div className="mb-3 ">
               <input
                 type="text"
@@ -110,8 +110,9 @@ const SignUp = () => {
                 required
               />
             </div>
-            <button type="submit" className=" btn-submit  btn btn-primary">
-              Sign In
+            <button type="submit" className=" btn-submit btn btn-primary">
+              <IoPersonAdd />
+              {" - "}SignUp
             </button>
           </form>
         </div>

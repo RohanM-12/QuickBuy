@@ -4,7 +4,7 @@ import { GrShop } from "react-icons/gr";
 import { AiFillHome } from "react-icons/ai";
 import { BsCartFill, BsFillInfoCircleFill } from "react-icons/bs";
 
-import { FaUserCircle } from "react-icons/fa";
+import { FaListAlt, FaUserCircle } from "react-icons/fa";
 import { useAuth } from "../../Context/Auth";
 import toast from "react-hot-toast";
 import SearchInput from "../Form/SearchInput";
@@ -13,6 +13,8 @@ import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../Context/Cart";
 import { Badge } from "antd";
 import { BiSolidDashboard, BiSolidLogInCircle } from "react-icons/bi";
+import { RiLoginCircleFill } from "react-icons/ri";
+import { IoPersonAdd } from "react-icons/io5";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -60,7 +62,8 @@ const Header = () => {
                   to={"/categories"}
                   data-bs-toggle="dropdown"
                 >
-                  Categories
+                  <FaListAlt />
+                  {" - "} Categories
                 </Link>
 
                 <ul style={{ fontSize: "20px" }} className="dropdown-menu">
@@ -81,12 +84,13 @@ const Header = () => {
                 <>
                   <li className="  mx-2  nav-item">
                     <NavLink to="/signup" className="nav-link" href="#">
-                      SignIn
+                      <IoPersonAdd />
+                      {" - "} SignUp
                     </NavLink>
                   </li>
                   <li className="  mx-2  nav-item">
                     <NavLink to="/login" className="nav-link" href="#">
-                      LogIn
+                      <RiLoginCircleFill /> {" - "}LogIn
                     </NavLink>
                   </li>
                 </>

@@ -54,7 +54,10 @@ const About = () => {
               <div className="row">
                 <ul style={{ "list-style-type": "none" }}>
                   <li>
-                    <Link className="m-4" to={"https://www.linkedin.com/feed/"}>
+                    <Link
+                      className="m-4"
+                      to={"https://linkedin.com/in/rohan-m1212"}
+                    >
                       <button className=" m-2 btn btn-outline-primary">
                         <BsLinkedin /> {" - "}LinkedIn
                       </button>

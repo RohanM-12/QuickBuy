@@ -32,7 +32,7 @@ const SearchInput = () => {
     <div>
       <form className=" d-flex" role="search" onSubmit={handleSubmit}>
         <input
-          className="  form-control me-2"
+          className="text-center   form-control me-2"
           type="search"
           placeholder="Search"
           aria-label="Search"
@@ -40,7 +40,7 @@ const SearchInput = () => {
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />
 
-        <button className=" mx-4 w-100 searchBtn" type="submit">
+        <button className="mx-4 w-100 searchBtn" type="submit">
           <BiSolidSearch /> {" - "}
           Search
         </button>
