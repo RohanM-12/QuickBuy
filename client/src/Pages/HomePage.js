@@ -5,6 +5,7 @@ import axios from "axios";
 import { Checkbox, Radio } from "antd";
 import { Prices } from "../Components/Prices";
 import { useCart } from "../Context/Cart";
+import { IoMdCloseCircle } from "react-icons/io";
 import toast from "react-hot-toast";
 import { Carousel } from "antd";
 import { useAuth } from "../Context/Auth";
@@ -205,7 +206,8 @@ const HomePage = () => {
                 className="mt-4 btn btn-primary"
                 onClick={() => window.location.reload()}
               >
-                Clear all Filters
+                <IoMdCloseCircle />
+                {" - "} Clear all Filters
               </button>
             </div>
           </div>
