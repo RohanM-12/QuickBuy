@@ -3,10 +3,10 @@ import Layout from "../Components/Layout/Layout";
 import { useCart } from "../Context/Cart";
 import { useAuth } from "../Context/Auth";
 import { useNavigate } from "react-router-dom";
-
+import { MdDelete } from "react-icons/md";
 import Modal from "antd/es/modal/Modal";
 import toast from "react-hot-toast";
-
+import { FaCheckCircle } from "react-icons/fa";
 const CartPage = () => {
   const [cart, setCart] = useCart();
   const auth = useAuth();
@@ -54,7 +54,9 @@ const CartPage = () => {
         <div className="row">
           <div className="col-md-12">
             <h1 className="text-center bg-light p-2 mb-1 ">
-              {`Hello ${auth && auth[0] && auth[0].user && auth[0].user?.name}`}
+              {`Hello 👋 ${
+                auth && auth[0] && auth[0].user && auth[0].user?.name
+              }`}
             </h1>
             <div
               style={{
@@ -96,7 +98,7 @@ const CartPage = () => {
                     className="btn btn-danger"
                     onClick={() => removeCartItem(p._id)}
                   >
-                    Remove
+                    <MdDelete /> Remove
                   </button>
                 </div>
               </div>
@@ -132,7 +134,7 @@ const CartPage = () => {
                         : toast.error("Address is required");
                     }}
                   >
-                    Proceed to checkout
+                    <FaCheckCircle /> Proceed to checkout
                   </button>
                 </>
               ) : !auth && auth[0] && auth[0].user && cart.length > 0 ? (

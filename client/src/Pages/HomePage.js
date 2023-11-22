@@ -9,7 +9,9 @@ import { IoMdCloseCircle } from "react-icons/io";
 import toast from "react-hot-toast";
 import { Carousel } from "antd";
 import { useAuth } from "../Context/Auth";
-
+import { BiSolidCartAlt } from "react-icons/bi";
+import { CgDetailsMore } from "react-icons/cg";
+import { ImSpinner } from "react-icons/im";
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -176,7 +178,7 @@ const HomePage = () => {
           <div className=" border-black x-2 col-md-2">
             <h5 className=" mt-4 fw-bolder text-center">Filter by Category</h5>
             <hr />
-            <div className="d-flext flex-column">
+            <div className=" d-flext flex-column">
               {categories.map((c) => (
                 <Checkbox
                   className="m-1"
@@ -190,7 +192,7 @@ const HomePage = () => {
             {/* price filter */}
             <h5 className=" fw-bolder mt-4 text-center">Filter by Price</h5>
             <hr />
-            <div className="d-flex flex-column">
+            <div className=" d-flex flex-column">
               <Radio.Group onChange={(e) => setRadio(e.target.value)}>
                 {Prices?.map((p) => (
                   <div key={p._id}>
@@ -367,7 +369,7 @@ const HomePage = () => {
                         className=" mb-1 btn btn-primary "
                         onClick={() => navigate(`/product/${p.slug}`)}
                       >
-                        More Details
+                        <CgDetailsMore /> More Details
                       </button>
                       <button
                         href="#"
@@ -381,7 +383,7 @@ const HomePage = () => {
                           toast.success("item added to cart");
                         }}
                       >
-                        Add to Cart{" "}
+                        <BiSolidCartAlt /> {" - "}Add to Cart
                       </button>
                     </div>
                   </div>
@@ -393,15 +395,17 @@ const HomePage = () => {
               <div className="col text-center">
                 <div className="m-2 p-3 ">
                   {products && products.length < total && (
-                    <button
-                      className=" text-dark   btn btn-outline-warning"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setPage(page + 1);
-                      }}
-                    >
-                      {loading ? "Loading ... " : "Load More"}
-                    </button>
+                    <>
+                      <button
+                        className=" text-dark   btn btn-outline-warning"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setPage(page + 1);
+                        }}
+                      >
+                        <ImSpinner /> {loading ? "Loading ... " : "Load More"}
+                      </button>
+                    </>
                   )}
                 </div>
               </div>

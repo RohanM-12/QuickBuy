@@ -2,13 +2,18 @@ import Layout from "../Components/Layout/Layout";
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../Context/Cart";
+import { BiSolidCartAlt } from "react-icons/bi";
+import { CgDetailsMore } from "react-icons/cg";
 const CategoryProduct = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const params = useParams();
   const navigate = useNavigate();
+  const [cart, setCart] = useCart();
   useEffect(() => {
     if (params?.slug) getProductByCat();
   }, [params?.slug]);
@@ -47,7 +52,7 @@ const CategoryProduct = () => {
                     style={{ fontSize: "20px", fontWeight: "bolder" }}
                     className="card-text"
                   >
-                    ₹{p.price}
+                    ₹{p.price.toLocaleString()}
                   </p>
                   <div className="row m-1">
                     <button
@@ -55,10 +60,21 @@ const CategoryProduct = () => {
                       className=" mb-1 btn btn-primary "
                       onClick={() => navigate(`/product/${p.slug}`)}
                     >
-                      More Details
+                      <CgDetailsMore /> More Details
                     </button>
-                    <button href="#" className=" btn btn-secondary ">
-                      Add to Cart{" "}
+                    <button
+                      href="#"
+                      className=" btn btn-secondary "
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
+                        toast.success("item added to cart");
+                      }}
+                    >
+                      <BiSolidCartAlt /> {" - "}Add to Cart
                     </button>
                   </div>
                 </div>

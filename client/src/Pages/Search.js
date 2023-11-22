@@ -4,6 +4,8 @@ import { useSearch } from "../Context/search";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../Context/Cart";
 import toast from "react-hot-toast";
+import { BiSolidCartAlt } from "react-icons/bi";
+import { CgDetailsMore } from "react-icons/cg";
 const Search = () => {
   const [values, setValues] = useSearch();
   const [cart, setCart] = useCart();
@@ -43,7 +45,7 @@ const Search = () => {
                       className=" mb-1 btn btn-primary "
                       onClick={() => navigate(`/product/${p.slug}`)}
                     >
-                      More Details
+                      <CgDetailsMore /> More Details
                     </button>
                     <button
                       href="#"
@@ -57,7 +59,7 @@ const Search = () => {
                         toast.success("item added to cart");
                       }}
                     >
-                      Add to Cart{" "}
+                      <BiSolidCartAlt /> {" - "}Add to Cart
                     </button>
                   </div>
                 </div>

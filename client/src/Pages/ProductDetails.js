@@ -130,11 +130,11 @@ const ProductDetails = () => {
                   style={{ fontSize: "20px", fontWeight: "bolder" }}
                   className="card-text"
                 >
-                  ₹{p.price}
+                  ₹{p.price.toLocaleString()}
                 </p>
                 <div className="row m-2 ">
                   <button href="#" className=" mb-1  btn btn-secondary ">
-                    Add to Cart{" "}
+                    <BiSolidCartAlt /> {" - "}Add to Cart
                   </button>
                   <button
                     href="#"
