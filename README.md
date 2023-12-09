@@ -8,9 +8,6 @@
 
 [https://drive.google.com/file/d/1PuJdC2SBCA0td\_0VdUoH-BGBI8kuzubr/view](https://drive.google.com/file/d/1PuJdC2SBCA0td_0VdUoH-BGBI8kuzubr/view)
 
-  <h2>📷 Screenshots</h2>
-  ![WhatsApp Image 2023-11-19 at 18 17 23_06e5c2ea](https://github.com/RohanM-12/QuickBuy/assets/98544765/1a2e971c-a614-435a-9e94-1c698010f23b)
-  
 
   
 <h2>🧐 Features</h2>
